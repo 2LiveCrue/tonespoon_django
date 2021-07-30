@@ -3,11 +3,8 @@ from .models import Album, Review
 
 
 class AlbumSerializer(serializers.HyperlinkedModelSerializer):
-    Reviews = serializers.HyperlinkedRelatedField(
+    reviews = serializers.HyperlinkedRelatedField(
         view_name="review_detail", many=True, read_only=True
-    )
-    album_url = serializers.ModelSerializer.serializer_url_field(
-        view_name="album_detail"
     )
 
     class Meta:
@@ -29,4 +26,5 @@ class ReviewSerializer(serializers.HyperlinkedModelSerializer):
             "album",
             "author",
             "body",
+            "album_id"
         )
